@@ -1,0 +1,14 @@
+== testing 
+open a terminal :
+cd path_you_want
+git clone git@github.com:gonzoyumo/resque_mailer_sample.git
+cd resque_mailer_sample
+vim config/environments/development.rb (to edit the email configuration, set the DEST_MAIL address and eventually change redis config)
+QUEUE=mailer rake resque:work
+
+open another terminal :
+cd path_to/resque_mailer_sample
+rails console
+Uploader.document_upload.deliver
+
+Then look at the logs, you'll see the code beeing executed twice
